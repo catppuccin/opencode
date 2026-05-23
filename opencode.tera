@@ -12,7 +12,7 @@ whiskers:
   "$schema": "https://opencode.ai/theme.json",
   "defs": {
     "macAccent": "{{ accent.hex }}",
-    "macRosewater": "{{ flamingo.hex }}",
+    "macRosewater": "{{ rosewater.hex }}",
     "macFlamingo": "{{ flamingo.hex }}",
     "macPink": "{{ pink.hex }}",
     "macMauve": "{{ mauve.hex }}",
