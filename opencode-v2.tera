@@ -1,0 +1,179 @@
+---
+whiskers:
+  version: "^2.7.0"
+  matrix:
+    - flavor
+    - accent
+  filename: "themes-v2/{{ flavor.identifier }}/catppuccin-{{ flavor.identifier }}-{{ accent }}.json"
+  hex_format: "#{{r}}{{g}}{{b}}{{z}}"
+---
+{%- set accent = flavor.colors[accent] -%}
+{%- if flavor.dark %}{% set mode = "dark" %}{% else %}{% set mode = "light" %}{% endif -%}
+{%- macro scale(color) -%}
+{
+        "100": "{{ color | mix(color=text, amount=0.3) | get(key="hex") }}",
+        "200": "{{ color | mix(color=text, amount=0.55) | get(key="hex") }}",
+        "300": "{{ color | mix(color=text, amount=0.8) | get(key="hex") }}",
+        "400": "{{ color.hex }}",
+        "500": "{{ color | mix(color=base, amount=0.6) | get(key="hex") }}",
+        "600": "{{ color | mix(color=base, amount=0.35) | get(key="hex") }}",
+        "700": "{{ color | mix(color=base, amount=0.2) | get(key="hex") }}",
+        "800": "{{ color | mix(color=base, amount=0.1) | get(key="hex") }}",
+        "900": "{{ color | mix(color=base, amount=0.05) | get(key="hex") }}"
+      }
+{%- endmacro scale -%}
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "base": {
+    "categorical": ["accent", "purple", "green", "blue", "orange", "red"],
+    "text": {
+      "base": "$hue.neutral.100",
+      "muted": "$hue.neutral.300",
+      "action": {
+        "primary": {
+          "base": "$text.base",
+          "$disabled": "$text.muted",
+          "$focused": "$text.base",
+          "$selected": "$hue.interactive.400"
+        },
+        "secondary": {
+          "base": "$text.muted",
+          "$hovered": "$text.base",
+          "$focused": "$hue.interactive.200"
+        },
+        "destructive": {
+          "base": "$hue.neutral.900",
+          "$disabled": "$text.muted"
+        }
+      },
+      "formfield": {
+        "base": "$text.base",
+        "$hovered": "$hue.interactive.400",
+        "$focused": "$hue.interactive.400",
+        "$pressed": "$hue.interactive.400",
+        "$disabled": "$text.muted",
+        "$selected": "$hue.interactive.400"
+      },
+      "feedback": {
+        "error": { "base": "$hue.red.400" },
+        "warning": { "base": "$hue.yellow.400" },
+        "success": { "base": "$hue.green.400" },
+        "info": { "base": "$hue.teal.400" }
+      }
+    },
+    "background": {
+      "base": "{{ base.hex }}",
+      "raised": {
+        "base": "{{ mantle.hex }}",
+        "high": "{{ crust.hex }}",
+        "max": "{{ surface0.hex }}"
+      },
+      "action": {
+        "primary": {
+          "base": "transparent",
+          "$hovered": "$hue.neutral.700",
+          "$focused": "$hue.interactive.600",
+          "$selected": "transparent"
+        },
+        "secondary": { "base": "transparent" },
+        "destructive": { "base": "$hue.red.400" }
+      },
+      "formfield": { "base": "$background.base" },
+      "feedback": {
+        "error": { "base": "$background.base" },
+        "warning": { "base": "$background.base" },
+        "success": { "base": "$background.base" },
+        "info": { "base": "$background.base" }
+      }
+    },
+    "border": { "base": "{{ surface1.hex }}" },
+    "scrollbar": { "base": "{{ surface2.hex }}" },
+    "diff": {
+      "text": {
+        "added": "{{ green.hex }}",
+        "removed": "{{ red.hex }}",
+        "context": "{{ subtext0.hex }}",
+        "hunkHeader": "{{ peach.hex }}"
+      },
+      "background": {
+        "added": "{{ green | mix(color=base, amount=0.15) | get(key="hex") }}",
+        "removed": "{{ red | mix(color=base, amount=0.15) | get(key="hex") }}",
+        "context": "{{ mantle.hex }}"
+      },
+      "highlight": {
+        "added": "{{ green.hex }}",
+        "removed": "{{ red.hex }}"
+      },
+      "lineNumber": {
+        "text": "{{ surface2.hex }}",
+        "background": {
+          "added": "{{ green | mix(color=base, amount=0.1) | get(key="hex") }}",
+          "removed": "{{ red | mix(color=base, amount=0.1) | get(key="hex") }}"
+        }
+      }
+    },
+    "syntax": {
+      "comment": "{{ overlay2.hex }}",
+      "keyword": "{{ accent.hex }}",
+      "function": "{{ blue.hex }}",
+      "variable": "{{ red.hex }}",
+      "string": "{{ green.hex }}",
+      "number": "{{ peach.hex }}",
+      "type": "{{ yellow.hex }}",
+      "operator": "{{ sky.hex }}",
+      "punctuation": "{{ text.hex }}"
+    },
+    "markdown": {
+      "text": "{{ text.hex }}",
+      "heading": "{{ accent.hex }}",
+      "link": "{{ blue.hex }}",
+      "linkText": "{{ sky.hex }}",
+      "code": "{{ green.hex }}",
+      "blockQuote": "{{ yellow.hex }}",
+      "emphasis": "{{ yellow.hex }}",
+      "strong": "{{ peach.hex }}",
+      "horizontalRule": "{{ subtext0.hex }}",
+      "listItem": "{{ blue.hex }}",
+      "listEnumeration": "{{ sky.hex }}",
+      "image": "{{ blue.hex }}",
+      "imageText": "{{ sky.hex }}",
+      "codeBlock": "{{ text.hex }}"
+    },
+    "@dialog": {
+      "background": {
+        "base": "$background.raised.base",
+        "action": {
+          "primary": { "$hovered": "$background.raised.max" },
+          "secondary": { "$hovered": "$background.raised.max" }
+        }
+      },
+      "@footer": {
+        "text": { "muted": "$hue.neutral.200" }
+      }
+    }
+  },
+  "{{ mode }}": {
+    "hue": {
+      "neutral": {
+        "100": "{{ text.hex }}",
+        "200": "{{ subtext1.hex }}",
+        "300": "{{ subtext0.hex }}",
+        "400": "{{ overlay1.hex }}",
+        "500": "{{ surface2.hex }}",
+        "600": "{{ surface1.hex }}",
+        "700": "{{ surface0.hex }}",
+        "800": "{{ base.hex }}",
+        "900": "{{ mantle.hex }}"
+      },
+      "accent": {{ self::scale(color=accent) }},
+      "interactive": {{ self::scale(color=accent) }},
+      "red": {{ self::scale(color=red) }},
+      "orange": {{ self::scale(color=peach) }},
+      "yellow": {{ self::scale(color=yellow) }},
+      "green": {{ self::scale(color=green) }},
+      "teal": {{ self::scale(color=teal) }},
+      "blue": {{ self::scale(color=blue) }},
+      "purple": {{ self::scale(color=mauve) }}
+    }
+  }
+}
