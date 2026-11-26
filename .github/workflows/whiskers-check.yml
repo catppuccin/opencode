@@ -11,5 +11,7 @@ jobs:
   run:
     uses: catppuccin/actions/.github/workflows/whiskers-check.yml@v1
     with:
-      args: opencode.tera
+      args: |
+        opencode.tera
+        opencode-v2.tera
     secrets: inherit

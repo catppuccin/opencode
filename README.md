@@ -40,9 +40,9 @@
 > Catppuccin is built-in to OpenCode, but this repository also provides support for different accents.
 
 > [!IMPORTANT]
-> These themes use the OpenCode v2 theme format (`base`, `light`/`dark` and `hue`), so they need OpenCode v2.4.0 or later. They follow Catppuccin's own surface layering, where raised surfaces are Mantle, Crust and Surface0, instead of the lighter surfaces OpenCode generates when it converts the older theme format.
+> OpenCode v2.4.0 and later convert the themes in [`themes`](themes) to a newer design, which draws raised surfaces lighter than Catppuccin intends. The themes in [`themes-v2`](themes-v2) use the OpenCode v2 theme format directly and follow Catppuccin's surface layering. They need OpenCode v2.4.0 or later.
 
-1. Download the file of your choice from [`themes`](themes).
+1. Download the file of your choice from [`themes-v2`](themes-v2) for OpenCode v2.4.0 and later, or from [`themes`](themes) for older versions.
 2. Place the downloaded file in `~/.config/opencode/themes`.
 3. Select the theme from the `switch theme` menu.
 4. Enjoy!
